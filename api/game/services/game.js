@@ -5,9 +5,12 @@
  * to customize this service
  */
 
+const axios =  require("axios");
+
 module.exports = {
   populate: async (params)=>{
-    const cat = await strapi.query("category").find({name: "Action"});
-    console.log(cat)
+    const gogApi = `https://www.gog.com/games/ajax/filtered?mediaType=game&page=1&sort=popularity`;
+    const {data: {products}} = await axios.get(gogApi);
+    console.log(products);
   }
 };
